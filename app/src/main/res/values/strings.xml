@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Nanit</string>
+    <string name="app_title">Nanit</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="select_date">Select date</string>
+    <string name="show_birthday_screen">Show birthday screen</string>
+</resources>
