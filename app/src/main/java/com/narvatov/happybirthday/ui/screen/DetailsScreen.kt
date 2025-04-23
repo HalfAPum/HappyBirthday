@@ -1,8 +1,13 @@
 package com.narvatov.happybirthday.ui.screen
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -12,6 +17,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.narvatov.happybirthday.R
@@ -49,6 +56,20 @@ fun DetailsScreen(
             onShowModalDatePickerClicked = onShowModalDatePickerClicked,
             modifier = Modifier.padding(top = 20.dp)
         )
+
+        Box(modifier = Modifier
+            .padding(top = 20.dp)
+            .size(200.dp)
+            .clip(CircleShape)
+            .background(color = Color.LightGray)
+            .clickable {  },
+        ) {
+            Text(
+                text = stringResource(R.string.picture),
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.align(Alignment.Center)
+            )
+        }
 
         Button(
             onClick = { onShowBirthdayButtonClicked.invoke() },
