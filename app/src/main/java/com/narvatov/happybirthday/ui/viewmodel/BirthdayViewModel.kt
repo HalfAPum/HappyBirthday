@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.narvatov.happybirthday.data.datastore.BirthdayDataStore
+import com.narvatov.happybirthday.domain.SavePictureUriUseCase
 import com.narvatov.happybirthday.model.ui.BirthdayAssetsVariants
 import com.narvatov.happybirthday.model.ui.BirthdayScreenUIState
 import com.narvatov.happybirthday.model.ui.DetailsScreenUIState
@@ -14,7 +15,10 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class BirthdayViewModel(private val birthdayDataStore: BirthdayDataStore) : ViewModel() {
+class BirthdayViewModel(
+    private val birthdayDataStore: BirthdayDataStore,
+    private val savePictureUriUseCase: SavePictureUriUseCase,
+) : ViewModel() {
 
     private val _sharedUIStateFlow = MutableStateFlow(DetailsScreenUIState("", null, ""))
     val sharedUIStateFlow = _sharedUIStateFlow.asStateFlow()
@@ -59,7 +63,7 @@ class BirthdayViewModel(private val birthdayDataStore: BirthdayDataStore) : View
         val picture = pictureUri?.toString() ?: return
 
         _sharedUIStateFlow.update { it.copy(picture = picture) }
-        viewModelScope.launch { birthdayDataStore.updatePicture(picture) }
+        viewModelScope.launch { savePictureUriUseCase(pictureUri) }
     }
 
     var birthdayAssetsVariant: BirthdayAssetsVariants = BirthdayAssetsVariants.ElephantBirthdayAssets

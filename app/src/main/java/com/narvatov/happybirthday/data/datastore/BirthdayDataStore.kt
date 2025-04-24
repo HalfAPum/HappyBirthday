@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.map
 
 class BirthdayDataStore(private val context: Context) {
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "DATA_STORE_NAME")
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = DATA_STORE_NAME)
 
     suspend fun getName(): String {
         return context.dataStore.data.map { preferences ->

@@ -112,25 +112,11 @@ fun DetailsScreen(
             }
         }
 
-        val context = LocalContext.current
-
         if (showBottomSheet) {
             PhotoBottomSheet(
                 sheetState = sheetState,
                 onDismissRequest = { showBottomSheet = false },
-                onPhotoSelected = {
-                    if (it != null) {
-                        try {
-                            context.contentResolver.takePersistableUriPermission(
-                                it,
-                                Intent.FLAG_GRANT_READ_URI_PERMISSION,
-                            )
-                        } catch (e: SecurityException) {
-                            println(e)
-                        }
-                        viewModel.updatePicture(it)
-                    }
-                },
+                onPhotoSelected = { viewModel.updatePicture(it) },
             )
         }
     }

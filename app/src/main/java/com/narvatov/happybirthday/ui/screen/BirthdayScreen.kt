@@ -15,10 +15,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,8 +41,10 @@ import com.narvatov.happybirthday.R
 import com.narvatov.happybirthday.model.ui.BirthdayAssetsVariants
 import com.narvatov.happybirthday.model.ui.BirthdayScreenUIState
 import com.narvatov.happybirthday.ui.common.NumberImage
+import com.narvatov.happybirthday.ui.common.PhotoBottomSheet
 import com.narvatov.happybirthday.ui.viewmodel.BirthdayViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BirthdayScreen(
     birthdayAssetsVariants: BirthdayAssetsVariants,
@@ -46,6 +53,9 @@ fun BirthdayScreen(
     modifier: Modifier = Modifier,
 ) {
     val uiState by viewModel.birthdayScreenUiStateFlow.collectAsState(BirthdayScreenUIState("", null, 0))
+
+    val sheetState = rememberModalBottomSheetState()
+    var showBottomSheet by remember { mutableStateOf(false) }
 
     ConstraintLayout (modifier = modifier
         .fillMaxSize()
@@ -78,9 +88,6 @@ fun BirthdayScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .clip(CircleShape)
-                    .clickable {
-
-                    }
             )
 
             if (uiState.pictureUri != null) {
@@ -91,9 +98,6 @@ fun BirthdayScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .clip(CircleShape)
-                        .clickable {
-
-                        }
                         .border(
                             border = BorderStroke(6.dp, birthdayAssetsVariants.imageBorderColor),
                             shape = CircleShape,
@@ -114,9 +118,7 @@ fun BirthdayScreen(
                     .size(36.dp)
                     .align(Alignment.TopEnd)
                     .clip(CircleShape)
-                    .clickable {
-
-                    }
+                    .clickable { showBottomSheet = true }
             )
         }
 
@@ -204,5 +206,13 @@ fun BirthdayScreen(
                 end.linkTo(parent.end)
             }
         )
+
+        if (showBottomSheet) {
+            PhotoBottomSheet(
+                sheetState = sheetState,
+                onDismissRequest = { showBottomSheet = false },
+                onPhotoSelected = { viewModel.updatePicture(it) },
+            )
+        }
     }
 }
