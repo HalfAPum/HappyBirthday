@@ -37,6 +37,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -53,6 +54,9 @@ dependencies {
     implementation(libs.androidx.navigation)
 
     implementation(libs.kotlin.serialization)
+    implementation("androidx.datastore:datastore-preferences:1.1.4")
+    implementation("io.insert-koin:koin-android:4.0.4")
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

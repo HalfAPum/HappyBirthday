@@ -12,10 +12,8 @@ import com.narvatov.happybirthday.ui.screen.DetailsScreen
 import com.narvatov.happybirthday.ui.viewmodel.BirthdayViewModel
 
 @Composable
-fun NanitNavHost() {
+fun NanitNavHost(birthdayViewModel: BirthdayViewModel) {
     val navController = rememberNavController()
-
-    val birthdayViewModel = viewModel<BirthdayViewModel>()
 
     NavHost(
         navController = navController,

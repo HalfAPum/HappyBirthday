@@ -5,4 +5,10 @@
     <string name="select_date">Select date</string>
     <string name="show_birthday_screen">Show birthday screen</string>
     <string name="picture">Picture</string>
+    <string name="camera_picture">Camera picture</string>
+    <string name="gallery_picture">Gallery picture</string>
+    <string name="permission_camera_granted">Permission Camera Granted</string>
+    <string name="permission_camera_denied">Permission Camera Denied</string>
+    <string name="permission_storage_granted">Permission Storage Granted</string>
+    <string name="permission_storage_denied">Permission Storage Denied</string>
 </resources>

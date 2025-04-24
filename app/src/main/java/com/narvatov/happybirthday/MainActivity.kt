@@ -3,24 +3,22 @@ package com.narvatov.happybirthday
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.narvatov.happybirthday.ui.nav.NanitNavHost
 import com.narvatov.happybirthday.ui.theme.HappyBirthdayTheme
+import com.narvatov.happybirthday.ui.viewmodel.BirthdayViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
+
+    // I would just waste time setting up koin for compose to initialize view model there
+    private val birthdayViewModel: BirthdayViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             HappyBirthdayTheme {
-                NanitNavHost()
+                NanitNavHost(birthdayViewModel)
             }
         }
     }
