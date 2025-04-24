@@ -3,6 +3,7 @@ package com.narvatov.happybirthday.ui.common
 import android.Manifest
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
@@ -114,6 +115,14 @@ fun PhotoBottomSheet(
             ModalSheetButton(
                 text = stringResource(R.string.gallery_picture),
                 onClick = {
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                        pickMedia.launch(
+                            PickVisualMediaRequest(
+                                mediaType = ActivityResultContracts.PickVisualMedia.ImageOnly
+                            )
+                        )
+                        return@ModalSheetButton
+                    }
                     val permissionCheckResult = ContextCompat.checkSelfPermission(
                         context,
                         Manifest.permission.READ_MEDIA_IMAGES,
