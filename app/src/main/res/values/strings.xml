@@ -22,4 +22,6 @@
     <string name="years_old">YEARS OLD!</string>
     <string name="today">TODAY</string>
     <string name="is_">IS</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>
