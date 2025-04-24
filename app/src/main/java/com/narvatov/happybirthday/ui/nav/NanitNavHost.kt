@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
+import com.narvatov.happybirthday.model.ui.assetVariantsList
 import com.narvatov.happybirthday.ui.dialog.DatePickerModal
 import com.narvatov.happybirthday.ui.screen.BirthdayScreen
 import com.narvatov.happybirthday.ui.screen.DetailsScreen
@@ -26,6 +27,9 @@ fun NanitNavHost(birthdayViewModel: BirthdayViewModel) {
                     navController.navigate(Destination.DatePickerDialog)
                 },
                 onShowBirthdayButtonClicked = {
+                    // It's better to pass value as a param (or generate in dedicated viewModel to the Birthday screen)
+                    // but I already spent enough time on implementation
+                    birthdayViewModel.randomizeBirthdayAssetsVariant()
                     navController.navigate(Destination.BirthdayScreen)
                 },
             )
@@ -33,6 +37,7 @@ fun NanitNavHost(birthdayViewModel: BirthdayViewModel) {
 
         composable<Destination.BirthdayScreen> {
             BirthdayScreen(
+                birthdayAssetsVariants = birthdayViewModel.birthdayAssetsVariant,
                 viewModel = birthdayViewModel,
                 onBackButtonClicked = { navController.popBackStack() },
             )

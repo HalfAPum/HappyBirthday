@@ -56,7 +56,7 @@ fun DetailsScreen(
                 .padding(40.dp)
                 .verticalScroll(rememberScrollState()),
         ) {
-            val birthdayUIState by viewModel.birthdayUIStateFlow.collectAsState()
+            val birthdayUIState by viewModel.sharedUIStateFlow.collectAsState()
 
             Text(
                 text = stringResource(R.string.app_title),
@@ -88,7 +88,7 @@ fun DetailsScreen(
                         model = birthdayUIState.pictureUri,
                         contentDescription = null,
                         modifier = Modifier.fillMaxSize(),
-                        contentScale = ContentScale.Fit
+                        contentScale = ContentScale.FillWidth
                     )
                 } else {
                     Text(

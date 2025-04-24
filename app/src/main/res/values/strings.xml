@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Nanit</string>
-    <string name="app_title">Nanit</string>
+    <string name="app_title">nanit</string>
     <string name="date_of_birth">Date of birth</string>
     <string name="select_date">Select date</string>
     <string name="show_birthday_screen">Show birthday screen</string>
@@ -11,4 +11,15 @@
     <string name="permission_camera_denied">Permission Camera Denied</string>
     <string name="permission_storage_granted">Permission Storage Granted</string>
     <string name="permission_storage_denied">Permission Storage Denied</string>
+    <string name="background_image">Background image</string>
+    <string name="picture_placeholder">Picture placeholder</string>
+    <string name="left_swirl">Left swirl</string>
+    <string name="right_swirl">Right swirl</string>
+    <string name="selected_picture">Selected picture</string>
+    <string name="camera_image">Camera image</string>
+    <string name="back_button">Back button</string>
+    <string name="month_old">MONTH OLD!</string>
+    <string name="years_old">YEARS OLD!</string>
+    <string name="today">TODAY</string>
+    <string name="is_">IS</string>
 </resources>

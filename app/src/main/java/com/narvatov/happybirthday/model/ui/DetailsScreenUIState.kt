@@ -4,7 +4,7 @@ import android.net.Uri
 import androidx.compose.runtime.Immutable
 
 @Immutable
-data class BirthdayUIState(
+data class DetailsScreenUIState(
     val name: String,
     val birthday: Long?,
     val picture: String,
